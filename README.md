@@ -246,8 +246,8 @@ pip install -r requirements.txt
 
 ## 📧 KONTRIBUTOR
 
-- **Nama**: [Your Name]
-- **NIM**: [Your NIM]
+- **Nama**: [muhammad rehan alfarizi]
+- **NIM**: [23115548]
 - **Mata Kuliah**: Big Data dan Data Mining
 
 ---
@@ -258,7 +258,7 @@ pip install -r requirements.txt
 </p>
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/YOUR_USERNAME/big-data-mining-/blob/main/Final_Project_BigData_Mining.ipynb">
+  <a href="https://colab.research.google.com/github/rehanalfarizu/big-data-mining-/blob/main/Final_Project_BigData_Mining.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
   </a>
 </p>
