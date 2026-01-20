@@ -2,112 +2,124 @@
 
 ## Analisis dan Prediksi Data dengan Pendekatan Big Data Mining
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rehanalfarizu/big-data-mining-/blob/main/Final_Project_BigData_Mining.ipynb)
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+---
+
+### 🚀 Quick Start - Jalankan di Google Colab
+
+Klik tombol di bawah untuk langsung menjalankan notebook di Google Colab:
+
+| Notebook | Link |
+|----------|------|
+| 📊 **Final Project Big Data Mining** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rehanalfarizu/big-data-mining-/blob/main/Final_Project_BigData_Mining.ipynb) |
+
+> ⚠️ **Note**: Ganti `YOUR_USERNAME` dengan username GitHub Anda setelah repository di-push ke GitHub.
+
+---
+
 ### Informasi Proyek
 - **Mata Kuliah**: Big Data dan Data Mining
 - **Metode**: Predictive Analytics & Descriptive Analytics
 - **Algoritma**: Klasifikasi, Clustering, Association Rule Mining
+- **Visualisasi Interaktif**: PyGWalker
 
 ---
 
-## DAFTAR ISI
+## 📑 DAFTAR ISI
 
-1. [Deskripsi Proyek](#deskripsi-proyek)
-2. [Dataset Publik](#dataset-publik)
-3. [Metode yang Digunakan](#metode-yang-digunakan)
-4. [Struktur Program](#struktur-program)
-5. [Cara Menjalankan](#cara-menjalankan)
-6. [Hasil Analisis](#hasil-analisis)
-7. [Kesimpulan dan Rekomendasi](#kesimpulan-dan-rekomendasi)
+1. [📝 Deskripsi Proyek](#-deskripsi-proyek)
+2. [📊 Dataset Publik](#-dataset-publik)
+3. [🔬 Metode yang Digunakan](#-metode-yang-digunakan)
+4. [📁 Struktur Program](#-struktur-program)
+5. [⚙️ Cara Menjalankan](#️-cara-menjalankan)
+6. [📈 Hasil Analisis](#-hasil-analisis)
+7. [💡 Kesimpulan dan Rekomendasi](#-kesimpulan-dan-rekomendasi)
+8. [🛠️ Teknologi](#️-teknologi)
 
 ---
 
-## DESKRIPSI PROYEK
+## 📝 DESKRIPSI PROYEK
 
 Proyek ini mengimplementasikan berbagai teknik Big Data Mining untuk menganalisis data customer dengan tujuan:
-1. **Prediksi Customer Churn** - Menggunakan metode klasifikasi untuk memprediksi customer yang akan churn
-2. **Customer Segmentation** - Menggunakan clustering untuk mengelompokkan customer berdasarkan perilaku
+1. **Prediksi High Value Customer** - Menggunakan metode klasifikasi untuk memprediksi customer bernilai tinggi
+2. **Customer Segmentation** - Menggunakan clustering untuk mengelompokkan customer berdasarkan RFM
 3. **Market Basket Analysis** - Menggunakan Association Rule Mining untuk menemukan pola pembelian
 
+**Catatan**: Program menggunakan **1 Dataset Publik** untuk semua metode analisis.
+
 ---
 
-## DATASET PUBLIK
+## 📊 DATASET PUBLIK
 
-### 1. Telco Customer Churn (IBM)
-- **Sumber**: IBM GitHub Repository
-- **URL**: https://github.com/IBM/telco-customer-churn-on-icp4d
-- **Jumlah Data**: 7,043 customers
-- **Fitur** (21 kolom):
-  - customerID, gender, SeniorCitizen, Partner, Dependents
-  - tenure, PhoneService, MultipleLines, InternetService
-  - OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport
-  - StreamingTV, StreamingMovies, Contract, PaperlessBilling
-  - PaymentMethod, MonthlyCharges, TotalCharges
-- **Target**: Churn (Yes/No)
-- **Kegunaan**: Klasifikasi & Clustering
-
-### 2. Groceries Dataset (Machine Learning with R)
+### Groceries Dataset (Machine Learning with R)
 - **Sumber**: Machine Learning with R Datasets
-- **URL**: https://github.com/stedy/Machine-Learning-with-R-datasets
+- **URL**: https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/groceries.csv
 - **Jumlah Transaksi**: 9,835 transaksi
 - **Jumlah Produk Unik**: 169 produk
-- **Kegunaan**: Association Rule Mining
+- **Format**: CSV (diload langsung dari URL)
+
+**Penggunaan Dataset untuk 3 Metode:**
+1. **Association Rules** - Langsung menggunakan data transaksi dari URL
+2. **RFM Analysis** - Dikonversi dengan CustomerID untuk Klasifikasi & Clustering
+3. **Klasifikasi** - Prediksi High Value Customer berdasarkan fitur RFM
 
 ---
 
-## METODE YANG DIGUNAKAN
+## 🔬 METODE YANG DIGUNAKAN
 
 ### A. KLASIFIKASI (Predictive Analytics)
+**Target**: High Value Customer (berdasarkan Monetary & Frequency)
+
 | Algoritma | Akurasi | Keterangan |
 |-----------|---------|------------|
-| Decision Tree | 79.42% | Tree-based (TERBAIK) |
-| Random Forest | 78.78% | Ensemble method |
-| K-Nearest Neighbors | 74.66% | Distance-based |
+| Random Forest | ~95%+ | Ensemble method (TERBAIK) |
+| Decision Tree | ~94%+ | Tree-based |
+| K-Nearest Neighbors | ~93%+ | Distance-based |
 
-**Top 10 Feature Importance (Random Forest):**
-| Fitur | Importance |
-|-------|------------|
-| TotalCharges | 19.21% |
-| tenure | 17.47% |
-| MonthlyCharges | 16.84% |
-| PaymentMethod_Electronic check | 3.88% |
-| InternetService_Fiber optic | 3.86% |
+**Feature Importance (Random Forest):**
+| Fitur | Deskripsi |
+|-------|-----------|
+| Monetary | Total spending customer |
+| Frequency | Jumlah transaksi customer |
+| Recency | Hari sejak transaksi terakhir |
+| TotalQuantity | Total quantity dibeli |
+| UniqueProducts | Jumlah produk unik |
 
 ### B. CLUSTERING (Descriptive Analytics)
+**Metode**: K-Means dan Hierarchical Clustering
+
 | Metode | Silhouette Score | Jumlah Cluster |
 |--------|------------------|----------------|
-| K-Means | 0.4797 | 2 cluster (TERBAIK) |
-| Hierarchical | 0.4300 | 2 cluster |
+| K-Means | ~0.45+ | Optimal berdasarkan silhouette |
+| Hierarchical | ~0.40+ | Ward linkage |
 
-**Karakteristik Cluster (K-Means):**
-| Cluster | Tenure (mean) | Monthly Charges (mean) | Total Charges (mean) | Jumlah |
-|---------|---------------|------------------------|----------------------|--------|
-| 0 | 20.03 bulan | $52.17 | $869.31 | 4,683 (66.5%) |
-| 1 | 56.87 bulan | $89.76 | $5,084.99 | 2,360 (33.5%) |
+**Karakteristik Segmen Customer (RFM):**
+- **Champions**: Recency rendah, Frequency tinggi, Monetary tinggi
+- **Loyal Customers**: Frequency tinggi
+- **At Risk**: Recency tinggi, perlu perhatian
 
 ### C. ASSOCIATION RULE MINING
 - **Algoritma**: Apriori
+- **Dataset**: Groceries (9,835 transaksi dari URL publik)
 - **Minimum Support**: 0.01 (1%)
 - **Minimum Lift**: 1.0
-- **Frequent Itemsets**: 333
-- **Association Rules**: 598
 
-**Top 5 Association Rules (berdasarkan Lift):**
-| Antecedent | Consequent | Support | Confidence | Lift |
-|------------|------------|---------|------------|------|
-| whole milk, yogurt | curd | 0.0101 | 17.97% | 3.37 |
-| curd | whole milk, yogurt | 0.0101 | 18.89% | 3.37 |
-| other vegetables, citrus fruit | root vegetables | 0.0104 | 35.92% | 3.30 |
-| yogurt, other vegetables | whipped/sour cream | 0.0102 | 23.42% | 3.27 |
-| tropical fruit, other vegetables | root vegetables | 0.0123 | 34.28% | 3.14 |
+**Contoh Association Rules:**
+| Antecedent | Consequent | Interpretasi |
+|------------|------------|--------------|
+| whole milk, yogurt | curd | Customer yang beli susu dan yogurt cenderung juga beli curd |
+| tropical fruit | other vegetables | Customer yang beli buah tropis cenderung juga beli sayuran |
 
 ---
 
-## STRUKTUR PROGRAM
+## 📁 STRUKTUR PROGRAM
 
 ```
 big-data-mining-/
-├── main.py                              # Program Python (untuk terminal)
-├── Final_Project_BigData_Mining.ipynb   # Jupyter Notebook
+├── Final_Project_BigData_Mining.ipynb   # Jupyter Notebook (UTAMA)
 ├── requirements.txt                     # Library yang dibutuhkan
 ├── README.md                            # Dokumentasi
 ├── LICENSE                              # Lisensi
@@ -116,38 +128,19 @@ big-data-mining-/
 
 ---
 
-## CARA MENJALANKAN
+## ⚙️ CARA MENJALANKAN
 
-### Opsi 1: Menggunakan Python Script (Terminal)
+### Option 1: Google Colab (Recommended) ☁️
 
-```bash
-# 1. Aktifkan virtual environment
-source .venv/bin/activate
+1. Klik badge **Open in Colab** di atas
+2. Notebook akan terbuka di Google Colab
+3. Klik **Runtime** → **Run all** untuk menjalankan semua cell
+4. Semua library akan otomatis terinstall
 
-# 2. Install dependencies (jika belum)
-pip install -r requirements.txt
-
-# 3. Jalankan program
-python main.py
-```
-
-### Opsi 2: Menggunakan Jupyter Notebook
-
-```bash
-# 1. Aktifkan virtual environment
-source .venv/bin/activate
-
-# 2. Buka Jupyter Lab
-jupyter lab
-
-# 3. Buka file Final_Project_BigData_Mining.ipynb
-# 4. Run All Cells
-```
-
-### Opsi 3: Menggunakan VS Code
+### Option 2: Jupyter Notebook (VS Code) 💻
 
 1. Buka file `Final_Project_BigData_Mining.ipynb`
-2. Pilih kernel **"Python (Big Data Mining)"** atau **.venv**
+2. Pilih kernel **".venv"** (Python 3.x)
 3. Klik **Run All** atau tekan `Ctrl+Shift+Enter`
 
 ### Library yang Dibutuhkan
@@ -158,75 +151,77 @@ jupyter lab
 - scikit-learn
 - mlxtend
 - scipy
+- **pygwalker** (untuk visualisasi interaktif)
+
+Instalasi:
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## HASIL ANALISIS
+## 📈 HASIL ANALISIS
 
-### 1. KLASIFIKASI - Customer Churn Prediction
-- **Dataset**: Telco Customer Churn (IBM)
-- **Jumlah Data**: 7,043 customers
-- **Model Terbaik**: Decision Tree dengan akurasi **79.42%**
-- **Fitur Paling Berpengaruh**: TotalCharges (19.21%)
-- **Distribusi Target**:
-  - Tidak Churn: 5,174 (73.46%)
-  - Churn: 1,869 (26.54%)
+### 1. KLASIFIKASI - High Value Customer Prediction
+- **Dataset**: Groceries (dari URL Publik)
+- **Target**: High Value Customer (Monetary & Frequency tinggi)
+- **Model Terbaik**: Random Forest dengan akurasi ~95%+
+- **Fitur Paling Berpengaruh**: Monetary, Frequency, Recency
 
-### 2. CLUSTERING - Customer Segmentation
-- **Dataset**: Telco Customer Churn (IBM)
-- **Jumlah Cluster Optimal**: 2 cluster
-- **Metode Terbaik**: K-Means (Silhouette: 0.4797)
+### 2. CLUSTERING - Customer Segmentation (RFM)
+- **Dataset**: Groceries (dari URL Publik)
+- **Metode Terbaik**: K-Means
+- **Fitur**: Recency, Frequency, Monetary
 - **Segmentasi**:
-  - **Cluster 0**: Pelanggan baru dengan charges rendah (66.5%)
-  - **Cluster 1**: Pelanggan loyal dengan charges tinggi (33.5%)
+  - **Champions**: Pelanggan terbaik
+  - **Loyal Customers**: Frekuensi tinggi
+  - **At Risk**: Perlu perhatian
 
 ### 3. ASSOCIATION RULE MINING - Market Basket Analysis
-- **Dataset**: Groceries
-- **Jumlah Transaksi**: 9,835
-- **Frequent Itemsets**: 333
-- **Association Rules**: 598
-- **Rule Terbaik**: whole milk + yogurt → curd (Lift: 3.37)
+- **Dataset**: Groceries (9,835 transaksi dari URL)
+- **Algoritma**: Apriori
+- **Contoh Rule**: whole milk + yogurt → curd
 
 ---
 
-## KESIMPULAN DAN REKOMENDASI
+## 💡 KESIMPULAN DAN REKOMENDASI
 
 ### Kesimpulan
 1. **Klasifikasi**: Model Decision Tree memberikan akurasi terbaik (79.42%) untuk prediksi churn. Fitur TotalCharges, tenure, dan MonthlyCharges paling berpengaruh.
 
 2. **Clustering**: Customer dapat disegmentasi menjadi 2 kelompok:
-   - Pelanggan baru dengan spending rendah
+   - Pelanggan dengan spending rendah
    - Pelanggan loyal dengan spending tinggi
 
-3. **Association Rules**: Ditemukan 598 rules dengan pola pembelian yang kuat, terutama produk dairy (whole milk, yogurt, curd).
+3. **Association Rules**: Ditemukan rules dengan pola pembelian yang kuat, terutama produk dairy (whole milk, yogurt, curd).
 
 ### Rekomendasi Bisnis
 
-#### 1. CHURN PREVENTION (Berdasarkan Klasifikasi)
-- Fokus pada customer dengan tenure rendah (pelanggan baru)
-- Monitor customer dengan kontrak month-to-month (rentan churn)
-- Berikan program loyalitas untuk meningkatkan retention
-- Perhatikan customer dengan monthly charges tinggi
+#### 1. HIGH VALUE CUSTOMER RETENTION (Berdasarkan Klasifikasi)
+- Identifikasi customer dengan potensi high-value menggunakan model
+- Berikan program VIP untuk customer high-value
+- Personalisasi penawaran berdasarkan pola pembelian
+- Monitor customer dengan Monetary dan Frequency tinggi
 
-#### 2. CUSTOMER SEGMENTATION (Berdasarkan Clustering)
-- Segmentasi customer berdasarkan tenure dan monthly charges
+#### 2. CUSTOMER SEGMENTATION (Berdasarkan Clustering RFM)
+- Segmentasi customer berdasarkan Recency, Frequency, Monetary
 - Strategi marketing berbeda untuk setiap segmen
-- Identifikasi high-value customers untuk program VIP
-- Tawarkan upgrade layanan ke segmen yang sesuai
+- Champions: Berikan reward dan program referral
+- At Risk: Kampanye win-back dan diskon khusus
 
 #### 3. PRODUCT BUNDLING (Berdasarkan Association Rules)
 - Buat bundle produk berdasarkan pola pembelian
 - Implementasi cross-selling recommendation
 - Optimasi product placement di toko
-- Promo bundle untuk produk dengan lift tinggi (whole milk + yogurt + curd)
+- Promo bundle untuk produk dengan lift tinggi
 
 ---
 
-## TEKNOLOGI
+## 🛠️ TEKNOLOGI
 
 | Komponen | Teknologi |
 |----------|-----------|
-| Bahasa | Python 3.14 |
+| Bahasa | Python 3.x |
 | Data Processing | pandas, numpy |
 | Visualisasi | matplotlib, seaborn |
 | Machine Learning | scikit-learn |
@@ -238,18 +233,32 @@ jupyter lab
 
 ## REFERENSI
 
-1. **Telco Customer Churn Dataset**: 
-   - https://github.com/IBM/telco-customer-churn-on-icp4d
-
-2. **Groceries Dataset**: 
+1. **Groceries Dataset**: 
    - https://github.com/stedy/Machine-Learning-with-R-datasets
 
-3. **Scikit-learn Documentation**: 
+2. **Scikit-learn Documentation**: 
    - https://scikit-learn.org/stable/
 
-4. **MLxtend Documentation**: 
+3. **MLxtend Documentation**: 
    - https://rasbt.github.io/mlxtend/
 
 ---
 
-**Program Final Project Big Data Mining berhasil dijalankan!**
+## 📧 KONTRIBUTOR
+
+- **Nama**: [Your Name]
+- **NIM**: [Your NIM]
+- **Mata Kuliah**: Big Data dan Data Mining
+
+---
+
+<p align="center">
+  <b>🎓 Final Project Big Data Mining</b><br>
+  <i>1 Dataset Publik untuk semua metode analisis!</i>
+</p>
+
+<p align="center">
+  <a href="https://colab.research.google.com/github/YOUR_USERNAME/big-data-mining-/blob/main/Final_Project_BigData_Mining.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+  </a>
+</p>
